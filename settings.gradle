@@ -1,0 +1,11 @@
+pluginManagement{
+    respositories{
+        gradlePluginPortal()
+    }
+}//여러모듈들간에 설정을 공유할 때 사용
+
+rootProject.name = 'gateway'
+include 'module-common'
+include 'module-user'
+include 'module-board'
+//하위 프로젝트들 포함시켜야 한다.

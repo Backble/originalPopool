@@ -1,0 +1,70 @@
+
+
+buildscript {
+    exit{
+        springBootversion = '2.5.3'//무슨버전으로 해야하는지??
+    }
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE" //버전??
+    }
+}//빌드시
+
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = 'com.msa'// compile 'com.msa~~' 그룹화
+    version '1.0-SNAPSHOT'
+
+    sourceCompatibility = '1.8' //자바버전
+    targetCompatibility = 1.8//자바버전
+    compileJava.options.encoding = 'UTF-8'// gradle 사용시 인코딩 오류처리
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+         compileOnly 'org.projectlombok:lombok'
+
+        //spring cloud gateway library >> compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-gateway', version: '2.2.5.RELEASE'
+         annotationProcessor 'org.projectlombok:lombok'
+         annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    }
+    test {
+        useJUnitPlatform()
+    }
+}//하위 모든 프로젝트 공통 세팅
+
+project('module-common') {
+
+    // commonn 에서는 bootjar로 패키징 할 필요가 없으므로 추가
+    bootJar.enabled = false
+    jar.enabled = true
+
+    dependencies {
+    }
+}
+
+project('module-board') {
+    dependencies {
+        compileOnly project('module-common')// 컴파일시 common 모듈을 가져온다.
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+    }
+}
+
+project('module-user') {
+    dependencies {
+        compileOnly project('module-common')// 컴파일시 common 모듈을 가져온다.
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+    }
+}//각 프로젝트에서만 사용하는 의존성 추가
