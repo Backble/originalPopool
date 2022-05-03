@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 pluginManagement{
     respositories{
         gradlePluginPortal()
@@ -9,3 +10,9 @@ include 'module-common'
 include 'module-user'
 include 'module-board'
 //하위 프로젝트들 포함시켜야 한다.
+=======
+rootProject.name = 'popool'
+include 'member-module'
+include 'common-module'
+
+>>>>>>> e28305cf153d27cc7cb89365bca4534b262355dc

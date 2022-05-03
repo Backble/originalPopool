@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 buildscript {
@@ -16,10 +17,25 @@ buildscript {
 
 
 subprojects {
+=======
+plugins {
+    id 'org.springframework.boot' version '2.6.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+subprojects {
+
+    group = 'com.example'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '11'
+
+>>>>>>> e28305cf153d27cc7cb89365bca4534b262355dc
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
+<<<<<<< HEAD
     group = 'com.msa'// compile 'com.msa~~' 그룹화
     version '1.0-SNAPSHOT'
 
@@ -27,11 +43,14 @@ subprojects {
     targetCompatibility = 1.8//자바버전
     compileJava.options.encoding = 'UTF-8'// gradle 사용시 인코딩 오류처리
 
+=======
+>>>>>>> e28305cf153d27cc7cb89365bca4534b262355dc
     repositories {
         mavenCentral()
     }
 
     dependencies {
+<<<<<<< HEAD
          compileOnly 'org.projectlombok:lombok'
 
         //spring cloud gateway library >> compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-gateway', version: '2.2.5.RELEASE'
@@ -68,3 +87,13 @@ project('module-user') {
         implementation 'org.springframework.boot:spring-boot-starter-web'
     }
 }//각 프로젝트에서만 사용하는 의존성 추가
+=======
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}
+>>>>>>> e28305cf153d27cc7cb89365bca4534b262355dc
