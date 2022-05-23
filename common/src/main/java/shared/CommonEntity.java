@@ -1,4 +1,4 @@
-package domain.entity;
+package shared;
 
 public class CommonEntity {
 }
