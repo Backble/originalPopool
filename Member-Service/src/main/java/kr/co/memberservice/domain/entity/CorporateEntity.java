@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tbl_corporate")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AttributeOverride(name = "id", column = @Column(name = "corporate_id"))
 @Getter
 public class CorporateEntity extends BaseEntity {
 
@@ -23,7 +24,7 @@ public class CorporateEntity extends BaseEntity {
     private String businessName;
 
     @OneToOne
-    @JoinColumn(name = "member_mst_id")
+    @JoinColumn(name = "mst_id")
     private MemberMstEntity memberMstEntity;
 
     @Builder

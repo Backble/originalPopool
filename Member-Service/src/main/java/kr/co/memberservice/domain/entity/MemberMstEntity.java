@@ -18,6 +18,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tbl_member_mst")
 @Getter
+@AttributeOverride(name = "id", column = @Column(name = "mst_id"))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberMstEntity extends BaseEntity {
 
@@ -35,19 +36,22 @@ public class MemberMstEntity extends BaseEntity {
     private String refreshToken;
 
     @Embedded
-    private Address address;
-    @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "number"
                     , column = @Column(name = "phone", unique = true, nullable = false))
     })
     private Phone phone;
+    @Embedded
+    private Address address;
 
-    @Enumerated(EnumType.STRING)
+    @Column(name = "gender")
+    @Enumerated(value = EnumType.STRING)
     private Gender gender;
-    @Enumerated(EnumType.STRING)
+    @Column(name = "member_role", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private MemberRole memberRole;
-    @Enumerated(EnumType.STRING)
+    @Column(name = "member_rank", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private MemberRank memberRank;
 
     @Builder
