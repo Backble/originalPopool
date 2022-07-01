@@ -31,7 +31,9 @@ public class MemberMstController {
 
     @ApiOperation("로그인")
     @PostMapping("/login")
-    public void login(@RequestBody @Valid MemberMstDto.LOGIN login){
-        //To do...
+    public ResponseFormat<MemberMstDto.TOKEN> login(@RequestBody @Valid MemberMstDto.LOGIN login){
+        return ResponseFormat.ok(memberMstService.login(login));
     }
+
+    //To do...
 }

@@ -49,7 +49,10 @@ public class MemberMstDto {
     @Getter
     @AllArgsConstructor
     public static class TOKEN{
-
+        @ApiModelProperty(example = "사용자 인증을 위한 accessToken")
+        private String accessToken;
+        @ApiModelProperty(example = "자동 로그인을 위한 refreshToken")
+        private String refreshToken;
     }
 
     @Builder

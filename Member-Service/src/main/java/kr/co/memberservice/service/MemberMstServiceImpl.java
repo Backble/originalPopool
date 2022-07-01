@@ -78,9 +78,10 @@ public class MemberMstServiceImpl implements MemberMstService{
             throw new BadRequestException("아이디나 비밀번호를 다시 확인해주세요");
         }
 
-        //To do...
+        String[] tokens = generateToken(memberMstEntity);
+        memberMstEntity.updateRefreshToken(tokens[1]);
 
-        return null;
+        return new MemberMstDto.TOKEN(tokens[0], tokens[1]);
     }
 
     /**
@@ -91,6 +92,15 @@ public class MemberMstServiceImpl implements MemberMstService{
     @Override
     public Boolean checkIdentity(String identity) {
         return !memberMstRepository.existsByIdentity(identity);
+    }
+
+    private String[] generateToken(MemberMstEntity memberMstEntity){
+        String accessToken = jwtProvider.createAccessToken(memberMstEntity.getIdentity()
+                , memberMstEntity.getMemberRole(), memberMstEntity.getName());
+        String refreshToken = jwtProvider.createRefreshToken(memberMstEntity.getIdentity()
+                , memberMstEntity.getMemberRole(), memberMstEntity.getName());
+
+        return new String[]{accessToken, refreshToken};
     }
 
 }

@@ -49,9 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         //To do....
                 .and()
                     .addFilterBefore(new JwtAuthenticationFilter(jwtProvider, handlerExceptionResolver)
-                            , UsernamePasswordAuthenticationFilter.class)
-
-        ;
+                            , UsernamePasswordAuthenticationFilter.class);
 
         //To do...
     }
