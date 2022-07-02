@@ -48,6 +48,30 @@ public class MemberMstDto {
     @Builder
     @Getter
     @AllArgsConstructor
+    public static class TOKEN{
+        @ApiModelProperty(example = "사용자 인증을 위한 accessToken")
+        private String accessToken;
+        @ApiModelProperty(example = "자동 로그인을 위한 refreshToken")
+        private String refreshToken;
+    }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor
+    public static class LOGIN{
+
+        @ApiModelProperty(example = "사용자 아이디")
+        @NotBlank(message = "아이디를 입력해주세요")
+        private String identity;
+
+        @ApiModelProperty(example = "사용자 비밀번호")
+        @NotBlank(message = "비밀번호를 입력해주세요")
+        private String password;
+    }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor
     public static class UPDATE{
 
     }

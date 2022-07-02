@@ -10,11 +10,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tbl_member")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AttributeOverride(name = "id", column = @Column(name = "member_id"))
 @Getter
 public class MemberEntity extends BaseEntity {
 
     /*
-        to do...
+        To do...
      */
 
     @OneToOne

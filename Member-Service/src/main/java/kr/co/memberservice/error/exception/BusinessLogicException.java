@@ -8,8 +8,8 @@ public class BusinessLogicException extends RuntimeException{
 
     private ErrorCode errorCode;
 
-    public BusinessLogicException(ErrorCode errorCode){
-        super(errorCode.getMessage());
+    public BusinessLogicException(String part, ErrorCode errorCode){
+        super(part + " : " + errorCode.getMessage());
         this.errorCode = errorCode;
     }
 
