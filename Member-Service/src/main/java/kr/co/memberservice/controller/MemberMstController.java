@@ -28,4 +28,12 @@ public class MemberMstController {
     public ResponseFormat<Boolean> checkIdentity(@RequestParam("identity") String identity){
         return ResponseFormat.ok(memberMstService.checkIdentity(identity));
     }
+
+    @ApiOperation("로그인")
+    @PostMapping("/login")
+    public ResponseFormat<MemberMstDto.TOKEN> login(@RequestBody @Valid MemberMstDto.LOGIN login){
+        return ResponseFormat.ok(memberMstService.login(login));
+    }
+
+    //To do...
 }

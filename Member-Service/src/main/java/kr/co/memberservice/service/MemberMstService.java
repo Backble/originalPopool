@@ -1,13 +1,19 @@
 package kr.co.memberservice.service;
 
+import kr.co.memberservice.domain.dto.MemberDto;
 import kr.co.memberservice.domain.dto.MemberMstDto;
 
 public interface MemberMstService {
 
-    //create service
+    //create
     void signUp(MemberMstDto.CREATE create);
 
-    //common service
+    //login
+    MemberMstDto.TOKEN login(MemberMstDto.LOGIN login);
+
+    //common
     Boolean checkIdentity(String identity);
+
+
 
 }
