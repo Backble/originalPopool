@@ -1,4 +1,4 @@
-package com.example.popool;
+package gateway.example.popool;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

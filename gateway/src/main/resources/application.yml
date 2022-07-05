@@ -1,0 +1,32 @@
+server:
+  port: 8000
+
+  spring:
+    cloud:
+      gateway:
+        routes:
+          - id: login //로그인기능
+            uri: http://localhost:9000 //라우팅할 주소
+            predicates:
+                - path=/member/**  #gateway 서버의 /member/**로 들어와야 한다는 조건, ??아직 로그인 안 한 상태인데 member인지 어떻게 확인?
+          - id: identify  //조회기능
+            uri: http://localhost:9010
+            predicates:
+                - path=/member/** #조회 할 수 있는 member 등급으로 수정 필요
+          - id: identify  //수정기능
+            uri: http://localhost:9020
+            predicates:
+                - path=/member/** #조회 할 수 있는 member 등급으로 수정 필요
+          - id: logout  //로그아웃기능
+            uri: http://localhost:9030
+            predicates:
+                - path=/member/**
+          - id: payment  //결제기능
+            uri: http://localhost:9040
+            predicates:
+                - path=/member/** #조회 할 수 있는 member 등급으로 수정 필요,
+          - id: home  //홈페이지로 돌아오는 기능
+            uri: http://localhost:9050
+            predicates:
+                - path=/member/**  #로그인/로그아웃 후
+                - path=/payment/** #결제 후 돌아올 때
